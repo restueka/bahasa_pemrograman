@@ -1,7 +1,7 @@
 #variabel
 a = "Restu Eka Putri"
 def func():
-    a = "any"
+    a = "datang"
     print ("selamat "+ a)
 func()
 print (a)

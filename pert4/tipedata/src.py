@@ -1,7 +1,6 @@
 # String
 from re import I
 
-
 a = "hello"
 print (a)
 print (type(a))

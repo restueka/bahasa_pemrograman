@@ -1,38 +1,49 @@
-import mysql.connector
+import mysql.connector as conn
 
-# Koneksi ke database
-cnx = mysql.connector.connect(
-    host="hostname",
-    user="username",
-    password="password",
-    database="database_name"
+mysql = conn.connect(
+    host = "localhost",
+    port = 23306,
+    user = "root",
+    password ="p455w0rd",
+    database =""
 )
+if mysql.is_connected():
+    print("hai restu, kamu berhasil connect ke database")
+    
+    
+cursor = db.cursor()
+cursor.execute("CREATE DATABASE BAHASA_PEMPROGRAMAN")
 
-cursor = cnx.cursor()
-
-# Membuat tabel
-create_table = """
-CREATE TABLE lenovo (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    akun VARCHAR(255)
+print("Database berhasil dibuat!")
+	cursor = db.cursor()
+sql = """CREATE TABLE customers (
+  customer_id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255),
+  address Varchar(255)
 )
 """
-cursor.execute(create_table)
+cursor.execute(sql)
 
-# Menambahkan data
-add_user = "INSERT INTO lenovo (name, akun) VALUES (%s, %s)"
-user_data = ("Restu Eka", "restueka27")
-cursor.execute(add_user, user_data)
-cnx.commit()
+print("Tabel customers berhasil dibuat!")
+cursor = db.cursor()
+sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+val = ("wisnu", "ngawi")
+cursor.execute(sql, val)
 
-# Mengambil data
-query = "SELECT * FROM users"
-cursor.execute(query)
+db.commit()
 
-for (id, name, akun) in cursor:
-    print("ID: {}, Name: {}, Akun: {}".format(id, name, akun))
+print("{} data ditambahkan".format(cursor.rowcount))
+cursor = db.cursor()
+sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+values = [
+  ("azam", "Tangerang"),
+  ("syifa", "Surabaya"),
+  ("hasna", "Bandung"),
+  ("hasan", "Jakarta")
+]
 
-# Menutup koneksi
-cursor.close()
-cnx.close()
+for val in values:
+  cursor.execute(sql, val)
+  db.commit()
+
+print("{} data ditambahkan".format(len(values)))

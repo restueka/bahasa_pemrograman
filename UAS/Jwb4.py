@@ -1,10 +1,11 @@
-import mysql.connector
+import mysql.connector as conn
 
-db = mysql.connector.connect(
-     host = 'localhost',
-     user = 'root',
-     password = '',
-     database = '',
+mysql = conn.connect(
+    host = "172.29.51.168",
+    port = 23306,
+    user = "root",
+    password ="p455w0rd",
+    database =""
 )
-if db.is_connected():
-    print("berhasil")
+if mysql.is_connected():
+    print("yeayy kamu berhasil connect ke database")
